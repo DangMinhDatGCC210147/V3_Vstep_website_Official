@@ -473,12 +473,12 @@ class SkillPartQuestionController extends Controller
                 }
             }
 
-            return redirect()->route('create.skill.part')->with('success', 'Reading Part updated successfully!');
+            return redirect()->route('create.skill.part')->with('success', 'Listening Part updated successfully!');
         } catch (\Exception $e) {
             // Log the error
             logger()->error('Error updating reading part:', ['exception' => $e]);
 
-            return redirect()->back()->with('error', 'An error occurred while updating the reading part.');
+            return redirect()->back()->with('error', 'An error occurred while updating the listening part.');
         }
     }
 
