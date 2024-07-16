@@ -139,7 +139,7 @@
                                             <i class="mdi mdi-lead-pencil mdi-24px" style="color:orange"></i>
                                         </a>
                                         <a
-                                            href="{{ route('download.response', ['studentId' => $result->student->id, 'testName' => $result->test_name]) }}">
+                                            href="{{ route('download.response', ['studentId' => $result->student_id, 'testName' => $result->test_name]) }}">
                                             <i class="mdi mdi-download mdi-24px"></i>
                                         </a>
                                         <a href="{{ route('resultList.details', ['id' => $result->id]) }}">

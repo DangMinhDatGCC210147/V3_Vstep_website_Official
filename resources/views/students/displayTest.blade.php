@@ -320,6 +320,26 @@
     <script src="{{ asset('students/assets/js/display_test_page.js') }}"></script>
     <script src="{{ asset('students/assets/js/record_speaking.js') }}"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const audio = document.getElementById('audioPlayer-{{ $audio->id }}');
+            let lastTime = 0; // Biến lưu trữ thời gian phát cuối cùng
+
+            audio.addEventListener('timeupdate', function () {
+                // Nếu thời gian hiện tại lớn hơn thời gian cuối cùng + 1s, tức là người dùng đang cố gắng tua
+                if (audio.currentTime > lastTime + 1) {
+                    audio.currentTime = lastTime; // Thiết lập lại thời gian phát về thời gian cuối cùng
+                } else {
+                    lastTime = audio.currentTime; // Cập nhật thời gian phát cuối cùng
+                }
+            });
+            audio.addEventListener('seeking', function () {
+                if (audio.currentTime !== lastTime) {
+                    audio.currentTime = lastTime; // Thiết lập lại thời gian phát về thời gian cuối cùng
+                }
+            });
+        });
+    </script>
+    <script>
         $(document).ready(function() {
             // Function to handle saving the answer to the database
             function saveAnswer(skillId, questionId, optionId, testId) {

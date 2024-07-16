@@ -21,6 +21,8 @@ use PhpOffice\PhpWord\Shared\Html;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use App\Models\ReadingsAudios;
+use HTMLPurifier;
+use HTMLPurifier_Config;
 use ZipArchive;
 
 
@@ -209,7 +211,7 @@ class ShowListResultsController extends Controller
                     return redirect()->back()->with('error', 'Student did not submit Speaking or Writing or their submissions are not available');
                 }
 
-                
+
             } elseif ($writingSkillIds->contains($response->skill_id)) {
                 // Đối với kỹ năng viết, tạo file docx từ text
                 $phpWord = new PhpWord();
@@ -221,7 +223,10 @@ class ShowListResultsController extends Controller
 
                 // Thêm reading_audio_file
                 $readingAudioText = ReadingsAudio::where('test_skill_id', $response->skill_id)->value('reading_audio_file');
-                Html::addHtml($section, $readingAudioText);
+                $config = HTMLPurifier_Config::createDefault();
+                $purifier = new HTMLPurifier($config);
+                $cleanHtml = $purifier->purify($readingAudioText);
+                Html::addHtml($section, $cleanHtml);
 
                 // Thêm response
                 $section->addTextBreak(1); // Thêm một khoảng trống giữa question và response
