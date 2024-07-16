@@ -139,14 +139,22 @@ class StudentSubmissionController extends Controller
         $user = auth()->user();
         $accountId = $user->account_id;
 
-        $existingCount = StudentResponses::where([
-            'test_id' => $validated['test_id'],
-            'student_id' => $user->id
-        ])->count();
+        if (!session()->has('part_number')) {
+            session(['part_number' => 1]);
+        }
 
-        $partNumber = $existingCount + 1;
+        // Lấy giá trị partNumber từ session
+        $partNumber = session('part_number');
+
+        // Tăng giá trị partNumber và giới hạn trong khoảng từ 1 đến 3
+        $partNumber = $partNumber % 3 + 1;
+
+        // Lưu lại giá trị mới của partNumber vào session
+        session(['part_number' => $partNumber]);
+
         // Construct a unique file name
         $currentTimeFormatted = date('n_j_Y', time());
+        
         $fileName = $accountId . '_Part_' . $partNumber . '_' . $currentTimeFormatted . '_' . time() . '.mp3';
         // Store the file in a dedicated directory
         $path = $request->file('recording')->storeAs('studentResponse', $fileName, 'public');

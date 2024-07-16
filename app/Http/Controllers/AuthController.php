@@ -81,8 +81,11 @@ class AuthController extends Controller
             return back()->with('error', 'Student ID ' . $request->account_id . ' already exists.');
         }
 
-        $user = new User();
+        if ($request->filled('new_password') && $request->new_password !== $request->password) {
+            return back()->with('error', 'Passwords do not match.');
+        }
 
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->account_id = $request->account_id;
@@ -90,7 +93,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->is_active = true;
         $user->save();
-        // return back()->with('success','Registered successfully');
+
         if ($user->role == 1) {
             return redirect()->route('tableLecturer.index')->with('success', 'Registered successfully');
         }else if($user->role == 0){

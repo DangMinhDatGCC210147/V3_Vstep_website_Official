@@ -149,8 +149,6 @@ Route::middleware(['auth'])->group(function () {
         //FUNCTION FOR GET INFO ASSIGNMENT
         Route::get('/create-assignment', [AssignmentController::class, 'create'])->name('create.assignemnt');
 
-
-
         //FUNCTION FOR CREATING QUESTIONS IN ASSIGNMENT
         Route::post('/store-assignment-type', [AssignmentController::class, 'store'])->name('storeAssignmentType');
         Route::get('/show-multiplechoice-type/{quantity}', [AssignmentController::class, 'showMultiplechoiceType'])->name('showMultiplechoiceType');

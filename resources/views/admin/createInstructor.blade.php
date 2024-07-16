@@ -103,75 +103,88 @@
                                             </ul>
                                         </div>
                                     @endif
-                                <div class="mb-2 row">
-                                    <label class="col-md-2 col-form-label" for="simple-input">Full Name</label>
-                                    <div class="col-md-10">
-                                        <input type="text" id="simple-input" class="form-control"
-                                            value="{{ isset($user) ? $user->name : old('name') }}" placeholder="Full name"
-                                            name="name" required>
-                                    </div>
-                                </div>
-                                <div class="mb-2 row">
-                                    <label class="col-md-2 col-form-label" for="simpleinput">Email</label>
-                                    <div class="col-md-10">
-                                        <input type="email" id="simpleinput" class="form-control"
-                                            value="{{ isset($user) ? $user->email : old('email') }}" placeholder="Email"
-                                            name="email" required>
-                                    </div>
-                                </div>
-                                <div class="mb-2 row">
-                                    <label class="col-md-2 col-form-label" for="example-email">Lecturer ID</label>
-                                    <div class="col-md-10">
-                                        <input type="text" id="example-email" class="form-control" placeholder="Lecturer ID"
-                                            name="account_id"
-                                            value="{{ isset($user) ? $user->account_id : old('account_id') }}">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="role" value="1">
-
-                                @if (isset($user))
                                     <div class="mb-2 row">
-                                        <label class="col-md-2 col-form-label" for="old_password">Old Password</label>
+                                        <label class="col-md-2 col-form-label" for="simple-input">Full Name</label>
                                         <div class="col-md-10">
-                                            <input type="password" class="form-control" id="old_password"
-                                                placeholder="Old Password" name="old_password">
+                                            <input type="text" id="simple-input" class="form-control"
+                                                value="{{ isset($user) ? $user->name : old('name') }}"
+                                                placeholder="Full name" name="name" required>
                                         </div>
                                     </div>
-                                @endif
+                                    <div class="mb-2 row">
+                                        <label class="col-md-2 col-form-label" for="simpleinput">Email</label>
+                                        <div class="col-md-10">
+                                            <input type="email" id="simpleinput" class="form-control"
+                                                value="{{ isset($user) ? $user->email : old('email') }}" placeholder="Email"
+                                                name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 row">
+                                        <label class="col-md-2 col-form-label" for="example-email">Lecturer ID</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="example-email" class="form-control"
+                                                placeholder="Lecturer ID" name="account_id"
+                                                value="{{ isset($user) ? $user->account_id : old('account_id') }}">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="role" value="1">
 
-                                <div class="mb-2 row">
-                                    <label class="col-md-2 col-form-label" for="new_password">New Password</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="new_password"
-                                            placeholder="New Password" name="new_password"
-                                            {{ isset($user) ? '' : 'required' }}>
+                                    @if (isset($user))
+                                        <div class="mb-2 row">
+                                            <label class="col-md-2 col-form-label" for="old_password">Old Password</label>
+                                            <div class="col-md-10">
+                                                <input type="password" class="form-control" id="old_password"
+                                                    placeholder="Old Password" name="old_password">
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <div class="mb-2 row">
+                                        <label class="col-md-2 col-form-label" for="new_password">New Password</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="new_password"
+                                                placeholder="New Password" name="new_password"
+                                                {{ isset($user) ? '' : 'required' }}>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-2 row">
-                                    <label class="col-md-2 col-form-label" for="new_password_confirmation">Confirm
-                                        Password</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="new_password_confirmation"
-                                            placeholder="Confirm Password" name="new_password_confirmation"
-                                            {{ isset($user) ? '' : 'required' }}>
+                                    <div class="mb-2 row">
+                                        <label class="col-md-2 col-form-label" for="new_password_confirmation">Confirm
+                                            Password</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="password"
+                                                placeholder="Confirm Password" name="password"
+                                                {{ isset($user) ? '' : 'required' }}>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-2 row">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-10">
-                                        <hr>
-                                        <button type="submit"
-                                            class="btn btn-primary w-xl">{{ isset($user) ? 'Update' : 'Register' }}</button>
+                                    <div class="mb-2 row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-10">
+                                            <hr>
+                                            <button type="submit"
+                                                class="btn btn-primary w-xl">{{ isset($user) ? 'Update' : 'Register' }}</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
+                    <!-- end row -->
                 </div>
-                <!-- end row -->
-            </div>
-        </div> <!-- end card -->
-    </div><!-- end col -->
+            </div> <!-- end card -->
+        </div><!-- end col -->
     </div>
+    <script>
+        function validatePassword() {
+            var newPassword = document.getElementById("new_password").value;
+            var confirmPassword = document.getElementById("password").value;
+
+            // Chỉ kiểm tra nếu new_password được nhập
+            if (newPassword !== "" && newPassword !== confirmPassword) {
+                alert("Passwords do not match. Please try again.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 @endsection
