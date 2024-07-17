@@ -78,6 +78,7 @@ class ShowListResultsController extends Controller
                 ->where('test_id', $testId)
                 ->first();
         }
+        
         if ($student) {
             $user = User::where('id', $student->user_id)->first();
 

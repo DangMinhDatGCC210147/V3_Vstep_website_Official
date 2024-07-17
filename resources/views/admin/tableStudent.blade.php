@@ -24,16 +24,16 @@
                     @if (auth()->user()->role == 0)
                         <form id="inactive-students-form" class="mx-2" action="{{ route('students.inactive') }}" method="POST">
                             @csrf
-                            <button type="button" class="btn btn-danger" onclick="inactiveStudents()">Deactivate Students</button>
+                            <button type="button" class="btn btn-danger" onclick="inactiveStudents()" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Deactive account">Deactivate Students</button>
                         </form>
                         <form id="active-students-form" action="{{ route('students.active') }}" method="POST">
                             @csrf
-                            <button type="button" class="btn btn-warning" onclick="activeStudents()">Activate Students</button>
+                            <button type="button" class="btn btn-warning" onclick="activeStudents()" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Activate account">Activate Students</button>
                         </form>
                     @endif
                 </div>
             <div class="col-6 d-flex justify-content-end">
-                <a href="{{ route('createStudent.create') }}" class="btn btn-info mr-2">Create</a>
+                <a href="{{ route('createStudent.create') }}" class="btn btn-info mr-2" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Create new account">Create</a>
             </div>
         </div>
     <div class="row">
@@ -51,9 +51,9 @@
                                 <th>Email</th>
                                 <th>Student ID</th>
                                 <th>Status</th>
-                                @if(auth()->user()->role == 0)
+                                {{-- @if(auth()->user()->role == 0) --}}
                                     <th>Action</th>
-                                @endif
+                                {{-- @endif --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -75,15 +75,17 @@
                                             </div>
                                         @endif
                                     </td>
-                                    @if(auth()->user()->role == 0)
+
                                     <td>
-                                        <a href="{{ route('createStudent.edit', $student->slug) }}"><i
-                                                class="mdi mdi-lead-pencil mdi-24px"></i></a>
+                                        @if(auth()->user()->role == 0)
+                                            <a href="{{ route('createStudent.edit', $student->slug) }}" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Edit"><i
+                                                    class="mdi mdi-lead-pencil mdi-24px"></i></a>
+                                        @endif
                                         <a href="{{ route('createStudent.destroy', $student->slug) }}"
                                             onclick="event.preventDefault();
                                                     if(confirm('Are you sure you want to delete this test?')) {
                                                         document.getElementById('delete-form-{{ $student->slug }}').submit();
-                                                    }">
+                                                    }" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Delete">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                         </a>
                                         <form id="delete-form-{{ $student->slug }}"
@@ -93,7 +95,6 @@
                                             @method('DELETE')
                                         </form>
                                     </td>
-                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

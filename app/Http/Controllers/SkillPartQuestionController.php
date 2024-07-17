@@ -166,7 +166,7 @@ class SkillPartQuestionController extends Controller
             $question->question_text = $validated['question'];
             $question->save();
 
-            return redirect()->route('create.skill.part')->with('success', 'Writing Part updated successfully!');
+            return redirect()->route('questionBank.writing')->with('success', 'Writing Part updated successfully!');
         } catch (\Exception $e) {
             // Log the error
             logger()->error('Error updating writing part:', ['exception' => $e]);
@@ -253,7 +253,7 @@ class SkillPartQuestionController extends Controller
     public function updateQuestionReading(Request $request)
     {
         // Log the entire request data
-        logger()->info('Request data:', $request->all());
+        // logger()->info('Request data:', $request->all());
 
         try {
             $validated = $request->validate([
@@ -272,36 +272,36 @@ class SkillPartQuestionController extends Controller
             ]);
 
             // Log validated data
-            logger()->info('Validated data:', $validated);
+            // logger()->info('Validated data:', $validated);
 
             $slugId = $validated['slug'];
             $readingAudioId = $validated['testSkillId'];
             // Fetch the existing TestSkill
             $testSkill = TestSkill::where('id', $slugId)->first();
             if (!$testSkill) {
-                logger()->error('TestSkill not found', ['id' => $slugId]);
+                // logger()->error('TestSkill not found', ['id' => $slugId]);
                 return redirect()->back()->with('error', 'TestSkill not found.');
             }
-            logger()->info('Fetched TestSkill:', ['id' => $testSkill->id]);
+            // logger()->info('Fetched TestSkill:', ['id' => $testSkill->id]);
 
             // Fetch the existing ReadingsAudio
             $readingAudio = ReadingsAudio::where('test_skill_id', $testSkill->id)
                 ->where('id', $readingAudioId)
                 ->first();
             if (!$readingAudio) {
-                logger()->error('ReadingsAudio not found', ['test_skill_id' => $testSkill->id, 'id' => $slugId]);
+                // logger()->error('ReadingsAudio not found', ['test_skill_id' => $testSkill->id, 'id' => $slugId]);
                 return redirect()->back()->with('error', 'ReadingsAudio not found.');
             }
             $readingAudio->reading_audio_file = $validated['passage'];
             $readingAudio->save();
 
             // Log after saving ReadingsAudio
-            logger()->info('ReadingsAudio updated:', ['id' => $readingAudio->id]);
+            // logger()->info('ReadingsAudio updated:', ['id' => $readingAudio->id]);
 
             // Loop through the questions to update
             foreach ($validated['questions'] as $questionData) {
                 // Log question data before processing
-                logger()->info('Processing question:', $questionData);
+                // logger()->info('Processing question:', $questionData);
 
                 // Fetch the existing question by ID
                 $question = Question::findOrFail($questionData['id']);
@@ -309,12 +309,12 @@ class SkillPartQuestionController extends Controller
                 $question->save();
 
                 // Log after updating question
-                logger()->info('Question updated:', ['id' => $question->id]);
+                // logger()->info('Question updated:', ['id' => $question->id]);
 
                 // Loop through the options to update
                 foreach ($questionData['options'] as $optionData) {
                     // Log option data before processing
-                    logger()->info('Processing option:', $optionData);
+                    // logger()->info('Processing option:', $optionData);
 
                     // Fetch the existing option by ID
                     $option = Option::findOrFail($optionData['id']);
@@ -323,14 +323,14 @@ class SkillPartQuestionController extends Controller
                     $option->save();
 
                     // Log after updating option
-                    logger()->info('Option updated:', ['id' => $option->id]);
+                    // logger()->info('Option updated:', ['id' => $option->id]);
                 }
             }
 
-            return redirect()->route('create.skill.part')->with('success', 'Reading Part updated successfully!');
+            return redirect()->route('questionBank.reading')->with('success', 'Reading Part updated successfully!');
         } catch (\Exception $e) {
             // Log the error
-            logger()->error('Error updating reading part:', ['exception' => $e]);
+            // logger()->error('Error updating reading part:', ['exception' => $e]);
 
             return redirect()->back()->with('error', 'An error occurred while updating the reading part.');
         }
@@ -473,7 +473,7 @@ class SkillPartQuestionController extends Controller
                 }
             }
 
-            return redirect()->route('create.skill.part')->with('success', 'Listening Part updated successfully!');
+            return redirect()->route('questionBank.listening')->with('success', 'Listening Part updated successfully!');
         } catch (\Exception $e) {
             // Log the error
             logger()->error('Error updating reading part:', ['exception' => $e]);
@@ -738,7 +738,7 @@ class SkillPartQuestionController extends Controller
                 }
             }
 
-            return redirect()->route('create.skill.part')->with('success', 'Speaking Part updated successfully!');
+            return redirect()->route('questionBank.speaking')->with('success', 'Speaking Part updated successfully!');
         } catch (\Exception $e) {
             // Log the error
             logger()->error('Error updating speaking part:', ['exception' => $e]);

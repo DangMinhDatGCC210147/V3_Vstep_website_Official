@@ -79,7 +79,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Date Completed</th>
-                                    <td>{{ $testResult->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $testResult->created_at->format('Y-M-d H:i:s') }}</td>
                                 </tr>
                             </tbody>
                         </table>

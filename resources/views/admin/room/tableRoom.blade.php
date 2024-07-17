@@ -22,9 +22,9 @@
         <div class="row">
             <div class="buttons">
                 <div class="col-12 d-flex justify-content-end">
-                    <a href="{{ route('room.create') }}" class="btn btn-info mx-2">Create</a>
+                    <a href="{{ route('room.create') }}" class="btn btn-info mx-2" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Create new room">Create</a>
                     @if (auth()->user()->role == 0)
-                        <button class="btn btn-danger" id="deleteAll">Delete All</button>
+                        <button class="btn btn-danger" id="deleteAll" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Delete all room">Delete All</button>
                     @endif
                 </div>
             </div>
@@ -81,16 +81,16 @@
                                     <td>{{ $room->end_time }}</td>
                                     <td><h3><span class="badge bg-success">{{ $room->students_count }}</span></h3></td>
                                     <td>
-                                        <a href="{{ route('room.addStudentForm', ['id' => $room->id]) }}">
+                                        <a href="{{ route('room.addStudentForm', ['id' => $room->id]) }}" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Add students">
                                             <i class="mdi mdi-account-multiple-plus mdi-24px mx-2" style="color: rgb(19, 225, 201)"></i>
                                         </a>
-                                        <a href="{{ route('room.edit', ['id' => $room->id]) }}"><i
+                                        <a href="{{ route('room.edit', ['id' => $room->id]) }}" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Edit"><i
                                             class="mdi mdi-lead-pencil mdi-24px"></i></a>
                                         <a href="{{ route('room.destroy', $room->id) }}"
                                             onclick="event.preventDefault();
                                                     if(confirm('Are you sure you want to delete this room?')) {
                                                         document.getElementById('delete-form-{{ $room->id }}').submit();
-                                                    }">
+                                                    }" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Delete">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: rgb(206, 25, 25)"></i>
                                         </a>
                                         <form id="delete-form-{{ $room->id }}"

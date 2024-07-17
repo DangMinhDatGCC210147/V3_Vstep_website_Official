@@ -29,6 +29,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Writing Skill - New Question For {{ str_replace('_', ' ', $partName) }}</h3>
+                    <strong style="font-style: italic; color:rgb(219, 28, 28)">Note that when pasting the topic/passage into the web, customize the text color to suit the light and dark modes by highlighting the entire text and then selecting "Remove Color" in Font Color.</strong>
                 </div>
                 <div class="card-body">
                     <div class="row">

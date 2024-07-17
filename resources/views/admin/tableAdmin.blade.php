@@ -21,7 +21,7 @@
     @if(auth()->user()->role == 0)
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
-                <a href="{{ route('createAdmin.create') }}" class="btn btn-info">Create</a>
+                <a href="{{ route('createAdmin.create') }}" class="btn btn-info" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Create new account">Create</a>
             </div>
         </div>
     @endif
@@ -52,13 +52,13 @@
                                     <td>{{ $admin->account_id }}</td>
                                     @if (auth()->user()->role == 0)
                                         <td>
-                                            <a href="{{ route('createAdmin.edit', $admin->slug) }}"><i
+                                            <a href="{{ route('createAdmin.edit', $admin->slug) }}" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Edit"><i
                                                     class="mdi mdi-lead-pencil mdi-24px"></i></a>
                                             <a href="{{ route('createAdmin.destroy', $admin->slug) }}"
                                                 onclick="event.preventDefault();
                                                         if(confirm('Are you sure you want to delete this test?')) {
                                                             document.getElementById('delete-form-{{ $admin->slug }}').submit();
-                                                        }">
+                                                        }" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Delete">
                                                 <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                             </a>
                                             <form id="delete-form-{{ $admin->slug }}"

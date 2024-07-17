@@ -128,7 +128,7 @@
                                             {{ '-' }}
                                         @endif
                                     </td>
-                                    <td>{{ $result->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $result->created_at->format('Y-M-d') }}</td>
                                     <td>
                                         <a
                                             href="{{ route('mark.response', [

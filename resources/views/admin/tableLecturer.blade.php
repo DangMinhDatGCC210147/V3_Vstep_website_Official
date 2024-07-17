@@ -23,15 +23,15 @@
             <div class="col-6 d-flex justify-content-start">
                 <form id="inactive-students-form" class="mx-2" action="{{ route('lecturers.inactive') }}" method="POST">
                     @csrf
-                    <button type="button" class="btn btn-danger" onclick="inactiveStudents()">Deactivate Lecturers</button>
+                    <button type="button" class="btn btn-danger" onclick="inactiveStudents()" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Deactive account">Deactivate Lecturers</button>
                 </form>
                 <form id="active-students-form" action="{{ route('lecturers.active') }}" method="POST">
                     @csrf
-                    <button type="button" class="btn btn-warning" onclick="activeStudents()">Activate Lecturers</button>
+                    <button type="button" class="btn btn-warning" onclick="activeStudents()" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Activate account">Activate Lecturers</button>
                 </form>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <a href="{{ route('createInstructor.create') }}" class="btn btn-info">Create</a>
+                <a href="{{ route('createInstructor.create') }}" class="btn btn-info" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Create new account">Create</a>
             </div>
         </div>
     @endif
@@ -76,13 +76,13 @@
                                     </td>
                                     @if(auth()->user()->role == 0)
                                     <td>
-                                        <a href="{{ route('createInstructor.edit', $lecturer->slug) }}"><i
+                                        <a href="{{ route('createInstructor.edit', $lecturer->slug) }}" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Edit"><i
                                                 class="mdi mdi-lead-pencil mdi-24px"></i></a>
                                         <a href="{{ route('createInstructor.destroy', $lecturer->slug) }}"
                                             onclick="event.preventDefault();
                                                     if(confirm('Are you sure you want to delete this test?')) {
                                                         document.getElementById('delete-form-{{ $lecturer->slug }}').submit();
-                                                    }">
+                                                    }" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Delete">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                         </a>
                                         <form id="delete-form-{{ $lecturer->slug }}"
