@@ -23,19 +23,25 @@
             <div class="col-12">
                 <h4>Download student's responses by Date</h4>
                 <br>
-                <form action="{{ route('download.filterdate') }}" method="POST">
+                <form action="{{ route('download.filterdate') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="start_date">Start Date and Time:</label>
                                 <input type="datetime-local" class="form-control" id="start_date" name="start_date" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid date and time.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="end_date">End Date and Time:</label>
                                 <input type="datetime-local" class="form-control" id="end_date" name="end_date" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid date and time.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-2 align-self-end">
@@ -47,19 +53,25 @@
                 <hr>
                 <h4>Export Excel by Date</h4>
                 <br>
-                <form action="{{ route('export.filterdate') }}" method="POST">
+                <form action="{{ route('export.filterdate') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="start_date">Start Date and Time:</label>
                                 <input type="datetime-local" class="form-control" id="start_date" name="start_date" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid date and time.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="end_date">End Date and Time:</label>
                                 <input type="datetime-local" class="form-control" id="end_date" name="end_date" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid date and time.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-2 align-self-end">

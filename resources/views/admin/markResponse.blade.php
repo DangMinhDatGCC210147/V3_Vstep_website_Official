@@ -49,6 +49,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Mark for Writing and Speaking</h4>
+                    <strong style="font-style: italic;" class="text-danger">Each part or task will base on scale 10. </strong>
                     <div class="row">
                         <div class="col-12">
                             <div class="p-2">
@@ -63,7 +64,7 @@
                                             <hr>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label for="writing_part1" class="form-label">Writing Task 1:</label>
+                                                    <label for="writing_part1" class="form-label">Writing Task 1 (Multiply factor 1):</label>
                                                     <input type="number" step="0.5" min="0" max="10"
                                                         class="form-control" id="writing_part1" name="writing_part1"
                                                         required value="{{ $resultId->writing_part1 }}">
@@ -74,7 +75,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label for="writing_part2" class="form-label">Writing Task 2:</label>
+                                                    <label for="writing_part2" class="form-label">Writing Task 2 (Multiply factor 2):</label>
                                                     <input type="number" step="0.5" min="0" max="10"
                                                         class="form-control" id="writing_part2" name="writing_part2"
                                                         value="{{ $resultId->writing_part2 }}" required>
@@ -91,7 +92,7 @@
                                             <hr>
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="speaking_part1" class="form-label">Speaking Part 1:</label>
+                                                    <label for="speaking_part1" class="form-label">Speaking Part 1 (Multiply factor 1):</label>
                                                     <input type="number" step="0.5" min="0" max="10"
                                                         class="form-control" id="speaking_part1" name="speaking_part1"
                                                         value="{{ $resultId->speaking_part1 }}" required>
@@ -102,7 +103,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="speaking_part2" class="form-label">Speaking Part 2:</label>
+                                                    <label for="speaking_part2" class="form-label">Speaking Part 2 (Multiply factor 1):</label>
                                                     <input type="number" step="0.5" min="0" max="10"
                                                         class="form-control" id="speaking_part2" name="speaking_part2"
                                                         value="{{ $resultId->speaking_part2 }}" required>
@@ -113,7 +114,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="speaking_part3" class="form-label">Speaking Part 3:</label>
+                                                    <label for="speaking_part3" class="form-label">Speaking Part 3 (Multiply factor 1):</label>
                                                     <input type="number" step="0.5" min="0" max="10"
                                                         class="form-control" id="speaking_part3" name="speaking_part3"
                                                         value="{{ $resultId->speaking_part3 }}" required>

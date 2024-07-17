@@ -87,9 +87,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="p-2">
-                                <form class="form-horizontal"
+                                <form class="form-horizontal needs-validation"
                                     action="{{ isset($user) ? route('createInstructor.update', $user->slug) : route('createInstructor.store') }}"
-                                    method="POST">
+                                    method="POST" novalidate>
                                     @csrf
                                     @if (isset($user))
                                         @method('PUT')
@@ -109,6 +109,9 @@
                                             <input type="text" id="simple-input" class="form-control"
                                                 value="{{ isset($user) ? $user->name : old('name') }}"
                                                 placeholder="Full name" name="name" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid name.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-2 row">
@@ -117,6 +120,9 @@
                                             <input type="email" id="simpleinput" class="form-control"
                                                 value="{{ isset($user) ? $user->email : old('email') }}" placeholder="Email"
                                                 name="email" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid email.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-2 row">
@@ -124,7 +130,10 @@
                                         <div class="col-md-10">
                                             <input type="text" id="example-email" class="form-control"
                                                 placeholder="Lecturer ID" name="account_id"
-                                                value="{{ isset($user) ? $user->account_id : old('account_id') }}">
+                                                value="{{ isset($user) ? $user->account_id : old('account_id') }}" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid lecturer ID.
+                                            </div>
                                         </div>
                                     </div>
                                     <input type="hidden" name="role" value="1">
@@ -135,6 +144,9 @@
                                             <div class="col-md-10">
                                                 <input type="password" class="form-control" id="old_password"
                                                     placeholder="Old Password" name="old_password">
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid password.
+                                                </div>
                                             </div>
                                         </div>
                                     @endif
@@ -145,6 +157,9 @@
                                             <input type="password" class="form-control" id="new_password"
                                                 placeholder="New Password" name="new_password"
                                                 {{ isset($user) ? '' : 'required' }}>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid password.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-2 row">
@@ -154,6 +169,9 @@
                                             <input type="password" class="form-control" id="password"
                                                 placeholder="Confirm Password" name="password"
                                                 {{ isset($user) ? '' : 'required' }}>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid password.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-2 row">

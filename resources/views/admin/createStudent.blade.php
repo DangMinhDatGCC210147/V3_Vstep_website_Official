@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="p-2">
-                                        <form class="form-horizontal" action="{{ isset($user) ? route('createStudent.update', $user->slug) : route('createInstructor.store') }}" method="POST">
+                                        <form class="form-horizontal needs-validation" action="{{ isset($user) ? route('createStudent.update', $user->slug) : route('createInstructor.store') }}" method="POST" novalidate>
                                             @csrf
                                             @if (isset($user))
                                                 @method('PUT')
@@ -118,6 +118,9 @@
                                                 <label class="col-md-2 col-form-label" for="name">Full Name</label>
                                                 <div class="col-md-10">
                                                     <input type="text" id="name" class="form-control" value="{{ isset($user) ? $user->name : old('name') }}" placeholder="Full name" name="name" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid name.
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -125,13 +128,19 @@
                                                 <label class="col-md-2 col-form-label" for="email">Email</label>
                                                 <div class="col-md-10">
                                                     <input type="email" id="email" class="form-control" value="{{ isset($user) ? $user->email : old('email') }}" placeholder="Email" name="email" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid email.
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="mb-2 row">
                                                 <label class="col-md-2 col-form-label" for="account_id">Student ID</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" id="account_id" class="form-control" placeholder="Student ID" name="account_id" value="{{ isset($user) ? $user->account_id : old('account_id') }}">
+                                                    <input type="text" id="account_id" class="form-control" placeholder="Student ID" required name="account_id" value="{{ isset($user) ? $user->account_id : old('account_id') }}">
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid student ID.
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -150,6 +159,9 @@
                                                 <label class="col-md-2 col-form-label" for="new_password">New Password</label>
                                                 <div class="col-md-10">
                                                     <input type="password" class="form-control" id="new_password" placeholder="New Password" name="new_password" {{ isset($user) ? '' : 'required' }}>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid password.
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -157,6 +169,9 @@
                                                 <label class="col-md-2 col-form-label" for="new_password_confirmation">Confirm Password</label>
                                                 <div class="col-md-10">
                                                     <input type="password" class="form-control" id="password" placeholder="Confirm Password" name="password" {{ isset($user) ? '' : 'required' }}>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid password.
+                                                    </div>
                                                 </div>
                                             </div>
 
