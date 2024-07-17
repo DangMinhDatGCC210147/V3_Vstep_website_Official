@@ -210,8 +210,6 @@ class ShowListResultsController extends Controller
                     $this->deleteDirectory($responsesFolderPath);
                     return redirect()->back()->with('error', 'Student did not submit Speaking or Writing or their submissions are not available');
                 }
-
-
             } elseif ($writingSkillIds->contains($response->skill_id)) {
                 // Đối với kỹ năng viết, tạo file docx từ text
                 $phpWord = new PhpWord();
@@ -231,7 +229,11 @@ class ShowListResultsController extends Controller
                 // Thêm response
                 $section->addTextBreak(1); // Thêm một khoảng trống giữa question và response
                 $section->addText("Response:");
-                $section->addText($response->text_response);
+
+                $textResponses = explode("\n", $response->text_response);
+                foreach ($textResponses as $line) {
+                    $section->addText($line);
+                }
 
                 $docxFilePath = $responsesFolderPath . '/writing/writing_response_Task_' . $writingTaskCounter . '.docx';
                 $writer = IOFactory::createWriter($phpWord, 'Word2007');
@@ -335,11 +337,16 @@ class ShowListResultsController extends Controller
                 // Thêm response
                 $section->addTextBreak(1);
                 $section->addText("Response:");
-                $section->addText($response->text_response);
+                $textResponses = explode("\n", $response->text_response);
+                foreach ($textResponses as $line) {
+                    $section->addText($line);
+                }
 
-                $docxFilePath = $responsesFolderPath . '/writing/writing_response_' . $response->id . '.docx';
+                $writingTaskCounter = 1;
+                $docxFilePath = $responsesFolderPath . '/writing/writing_response_Task_' . $writingTaskCounter . '.docx';
                 $writer = IOFactory::createWriter($phpWord, 'Word2007');
                 $writer->save($docxFilePath);
+                $writingTaskCounter++;
             }
         }
 
@@ -462,8 +469,27 @@ class ShowListResultsController extends Controller
             } elseif ($writingSkillIds->contains($response->skill_id)) {
                 $phpWord = new \PhpOffice\PhpWord\PhpWord();
                 $section = $phpWord->addSection();
-                $section->addText($response->text_response);
-                $docxFilePath = $responsesFolderPath . '/writing/writing_response_' . $response->id . '.docx';
+
+                // Thêm question_text
+                $questionText = Question::where('id', $response->question_id)->value('question_text');
+                $section->addText("Question: " . $questionText);
+
+                // Thêm reading_audio_file
+                $readingAudioText = ReadingsAudio::where('test_skill_id', $response->skill_id)->value('reading_audio_file');
+                $config = HTMLPurifier_Config::createDefault();
+                $purifier = new HTMLPurifier($config);
+                $cleanHtml = $purifier->purify($readingAudioText);
+                Html::addHtml($section, $cleanHtml);
+
+                // Thêm response
+                $section->addTextBreak(1);
+                $section->addText("Response:");
+                $textResponses = explode("\n", $response->text_response);
+                foreach ($textResponses as $line) {
+                    $section->addText($line);
+                }
+
+                $docxFilePath = $responsesFolderPath . '/writing/writing_response_Task_' . ($response->id % 2 == 0 ? 2 : 1) . '.docx';
                 $writer = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
                 $writer->save($docxFilePath);
             }
