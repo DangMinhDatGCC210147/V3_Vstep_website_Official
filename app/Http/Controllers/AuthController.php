@@ -108,6 +108,11 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function login_view()
+    {
+        return view('auth.login1');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
