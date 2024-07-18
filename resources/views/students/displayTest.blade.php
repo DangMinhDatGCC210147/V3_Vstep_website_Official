@@ -31,8 +31,7 @@
                             <span id="answered-count">Số câu đã hoàn thành: 0/0</span>
                         </div>
                         <button class="btn btn-warning" id="submitTestButton" data-test-id="{{ $test->id }}"
-                            style="font-size: 16px"><strong>Nộp
-                                bài</strong></button>
+                            style="font-size: 16px"><strong>Nộp bài</strong></button>
                     </div>
                 </div>
                 <div class="m-2 mb-5">

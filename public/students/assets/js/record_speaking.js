@@ -1,19 +1,19 @@
 // Ngăn chặn các tổ hợp phím phổ biến mở Developer Tools
-document.addEventListener('keydown', function (event) {
-    if (event.keyCode == 123) { // F12
-        event.preventDefault();
-    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Ctrl+Shift+I
-        event.preventDefault();
-    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 74) { // Ctrl+Shift+J
-        event.preventDefault();
-    } else if (event.ctrlKey && event.keyCode == 85) { // Ctrl+U
-        event.preventDefault();
-    } else if (event.ctrlKey && event.keyCode == 83) { // Ctrl+S
-        event.preventDefault();
-    } else if (event.ctrlKey && event.keyCode == 80) { // Ctrl+P
-        event.preventDefault();
-    }
-});
+// document.addEventListener('keydown', function (event) {
+//     if (event.keyCode == 123) { // F12
+//         event.preventDefault();
+//     } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Ctrl+Shift+I
+//         event.preventDefault();
+//     } else if (event.ctrlKey && event.shiftKey && event.keyCode == 74) { // Ctrl+Shift+J
+//         event.preventDefault();
+//     } else if (event.ctrlKey && event.keyCode == 85) { // Ctrl+U
+//         event.preventDefault();
+//     } else if (event.ctrlKey && event.keyCode == 83) { // Ctrl+S
+//         event.preventDefault();
+//     } else if (event.ctrlKey && event.keyCode == 80) { // Ctrl+P
+//         event.preventDefault();
+//     }
+// });
 //Not allow to hightlight
 document.addEventListener('selectstart', function (e) {
     if (e.target.classList.contains('body')) {

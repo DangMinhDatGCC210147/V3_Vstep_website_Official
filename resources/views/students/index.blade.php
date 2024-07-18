@@ -77,8 +77,7 @@
                                 <video id="video" width="250" height="170" autoplay></video>
                             </div>
                             <!-- Capture button -->
-                            <form id="imageUploadForm"
-                                action="{{ url('/saving') }}" method="POST"
+                            <form id="imageUploadForm" action="{{ url('/saving') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @if (isset($test_id))
@@ -167,14 +166,23 @@
                     <div class="underline"></div>
                     <div class="btn-group d-flex justify-content-lg-between" style="width: 100%;">
                         <div class="button_get" style="flex: 1;">
-                            <form action="{{ route('start-test') }}" method="GET">
-                                <button type="submit" class="btn btn-success mt-3" style="width: 100%; background-color: #27cd18;">NHẬN ĐỀ</button>
+                            <form id="myFormReceive" action="{{ route('start-test') }}" method="GET">
+                                <button type="submit" class="btn btn-success mt-3"
+                                    style="width: 100%; background-color: #27cd18;">NHẬN ĐỀ</button>
                             </form>
                         </div>
+                        <script>
+                            document.getElementById('myFormReceive').addEventListener('submit', function(event) {
+                                event.preventDefault();
+                                localStorage.clear();
+                                this.submit();
+                            });
+                        </script>
                         <div class="button_get">
                             <form action="{{ route('logout') }}" method="POST" style="flex: 1;">
                                 @csrf
-                                <button type="submit" class="btn btn-secondary mt-3" style="width: 100%;">ĐĂNG XUẤT</button>
+                                <button type="submit" class="btn btn-secondary mt-3" style="width: 100%;">ĐĂNG
+                                    XUẤT</button>
                             </form>
                         </div>
                     </div>
