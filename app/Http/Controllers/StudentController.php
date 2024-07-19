@@ -91,15 +91,15 @@ class StudentController extends Controller
     {
         $userId = Auth::user()->id; // Lấy user_id của người dùng hiện tại
         //BỔ SUNG TẠI ĐÂY
-        $student = Student::create([
-            'user_id' => $userId,
-        ]);
+        // $student = Student::create([
+        //     'user_id' => $userId,
+        // ]);
 
         $student = Student::where('user_id', $userId)->orderBy('created_at', 'desc')->first(); // Lấy thông tin sinh viên từ DB
 
-        // if (!$student) {
-        //     return redirect()->route('student.index')->with('error', 'Bạn cần chụp ảnh trước khi nhận đề thi.');
-        // }
+        if (!$student) {
+            return redirect()->route('student.index')->with('error', 'Bạn cần chụp ảnh trước khi nhận đề thi.');
+        }
 
         if ($student) {
             // Tạo bài test mới nếu người dùng chưa có test_id
