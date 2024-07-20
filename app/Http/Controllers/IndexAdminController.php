@@ -84,16 +84,28 @@ class IndexAdminController extends Controller
     }
     public function showTableOfWritingQuestionBank()
     {
-        $writingQuestionBank = TestSkill::where('skill_name', 'Writing')
-            ->get();
+        // Truy vấn tất cả các kỹ năng có tên 'Writing'
+        $writingQuestionBank = TestSkill::where('skill_name', 'Writing')->get();
+
         $questions = [];
+        $passages = [];
 
         foreach ($writingQuestionBank as $index => $writingQuestion) {
+            // Truy vấn câu hỏi đầu tiên từ bảng questions với test_skill_id tương ứng
             $question = Question::where('test_skill_id', $writingQuestion->id)->first();
-            $questions[$index] = $question ? $question->part_name : 'No question available';
+            if ($question) {
+                $questions[$index] = str_replace('&nbsp;', ' ', $question->part_name);
+
+                // Truy vấn passage từ bảng readings_audios với test_skill_id tương ứng
+                $readingAudio = ReadingsAudio::where('test_skill_id', $writingQuestion->id)->first();
+                $passages[$index] = $readingAudio ? str_replace('&nbsp;', ' ', $readingAudio->reading_audio_file) : 'No passage available';
+            } else {
+                $questions[$index] = 'No question available';
+                $passages[$index] = 'No passage available';
+            }
         }
 
-        return view('admin.listQuestionBank.listOfWriting', compact('writingQuestionBank', 'questions'));
+        return view('admin.listQuestionBank.listOfWriting', compact('writingQuestionBank', 'questions', 'passages'));
     }
 
     public function showTableOfListeningQuestionBank()

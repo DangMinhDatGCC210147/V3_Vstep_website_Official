@@ -39,9 +39,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Skill Name</th>
-                                <th>Slug</th>
-                                <th>Time Limit</th>
                                 <th>Part Name</th>
+                                <th>Passage</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -51,18 +50,18 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $writing->skill_name }}</td>
-                                    <td>{{ $writing->slug }}</td>
-                                    <td>{{ $writing->time_limit }}</td>
                                     <td>{{ str_replace('_', ' ', $questions[$index]) }}</td>
+                                    <td>{{ char_limit($passages[$index], 80) }}</td>
                                     <td>{{ $writing->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('editQuestionWriting', ['test_slug' => $writing->slug, 'part_name' => $questions[$index]]) }}"><i
-                                            class="mdi mdi-lead-pencil mdi-24px"></i></a>
+                                        <a href="{{ route('editQuestionWriting', ['test_slug' => $writing->slug, 'part_name' => $questions[$index]]) }}">
+                                            <i class="mdi mdi-lead-pencil mdi-24px"></i>
+                                        </a>
                                         <a href="{{ route('test.skill.destroy', $writing->slug) }}"
                                             onclick="event.preventDefault();
-                                                            if(confirm('Are you sure you want to delete this test skill?')) {
-                                                                document.getElementById('delete-form-{{ $writing->slug }}').submit();
-                                                            }">
+                                                    if(confirm('Are you sure you want to delete this test skill?')) {
+                                                        document.getElementById('delete-form-{{ $writing->slug }}').submit();
+                                                    }">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                         </a>
                                         <form id="delete-form-{{ $writing->slug }}"

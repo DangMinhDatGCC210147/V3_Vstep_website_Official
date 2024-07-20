@@ -50,7 +50,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $reading->skill_name }}</td>
-                                    <td>{{ char_limit($readingAudioFiles[$index], 90) }}</td>
+                                    <td>{{ char_limit(str_replace('&nbsp;', ' ', $readingAudioFiles[$index]), 90) }}</td>
                                     <td>{{ str_replace('_', ' ', $questions[$index]) }}</td>
                                     <td>{{ $reading->created_at }}</td>
                                     <td>
