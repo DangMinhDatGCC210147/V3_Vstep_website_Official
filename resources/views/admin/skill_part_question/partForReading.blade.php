@@ -496,6 +496,7 @@
             document.querySelectorAll('.form-control[name="passage"]').forEach((textarea, index) => {
                 ClassicEditor
                     .create(textarea, {
+                        removePlugins: ['FontColor']
                         // Configuration options
                     })
                     .then(editor => {

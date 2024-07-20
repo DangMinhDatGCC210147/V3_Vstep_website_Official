@@ -320,10 +320,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('questionForm');
-
             // Initialize CKEditor
             ClassicEditor
                 .create(document.querySelector('#passage-editor'), {
+                    removePlugins: ['FontColor']
                     // Configuration options
                 })
                 .catch(error => {
