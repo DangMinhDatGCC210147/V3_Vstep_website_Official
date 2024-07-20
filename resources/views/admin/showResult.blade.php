@@ -94,7 +94,7 @@
                                 <th>No</th>
                                 <th>Student Name</th>
                                 <th>Student ID</th>
-                                <th>Test Name</th>
+                                {{-- <th>Test Name</th> --}}
                                 <th>Listening</th>
                                 <th>Reading</th>
                                 <th>Writing</th>
@@ -110,7 +110,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $result->student->name }}</td>
                                     <td>{{ $result->student->account_id }}</td>
-                                    <td>{{ $result->test_name }}</td>
+                                    {{-- <td>{{ $result->test_name }}</td> --}}
                                     <td>{{ number_format($result->computed_listening_score, 1) }}</td>
                                     <td>{{ number_format($result->computed_reading_score, 1) }}</td>
                                     <td>
@@ -140,7 +140,7 @@
                                             {{ '-' }}
                                         @endif
                                     </td>
-                                    <td>{{ $result->created_at->format('Y-M-d') }}</td>
+                                    <td>{{ $result->created_at->format('Y-M-d H:i') }}</td>
                                     <td>
                                         <a
                                             href="{{ route('mark.response', [
