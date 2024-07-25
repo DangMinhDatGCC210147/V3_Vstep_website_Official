@@ -54,13 +54,15 @@
                                     <td>{{ str_replace('_', ' ', $questions[$index]) }}</td>
                                     <td>{{ $reading->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('editQuestionReading', ['test_slug' => $reading->slug, 'part_name' => $questions[$index]]) }}"><i
+                                        <a href="{{ route('editQuestionReading', ['test_slug' => $reading->slug, 'part_name' => $questions[$index]]) }}" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                            data-bs-content="Edit"><i
                                                 class="mdi mdi-lead-pencil mdi-24px"></i></a>
                                         <a href="{{ route('test.skill.destroy', $reading->slug) }}"
                                             onclick="event.preventDefault();
                                                             if(confirm('Are you sure you want to delete this test skill?')) {
                                                                 document.getElementById('delete-form-{{ $reading->slug }}').submit();
-                                                            }">
+                                                            }" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                data-bs-content="Delete">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                         </a>
                                         <form id="delete-form-{{ $reading->slug }}"

@@ -57,12 +57,14 @@
                                     <td>{{ $speaking->created_at }}</td>
                                     <td>
                                         <a href="{{ route('editQuestionSpeaking', ['test_slug' => $speaking->slug, 'part_name' => $questions[$index]]) }}"><i
-                                            class="mdi mdi-lead-pencil mdi-24px"></i></a>
+                                            class="mdi mdi-lead-pencil mdi-24px" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                            data-bs-content="Edit"></i></a>
                                         <a href="{{ route('test.skill.destroy', $speaking->slug) }}"
                                             onclick="event.preventDefault();
                                                     if(confirm('Are you sure you want to delete this test skill?')) {
                                                         document.getElementById('delete-form-{{ $speaking->slug }}').submit();
-                                                    }">
+                                                    }" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                data-bs-content="Delete">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                         </a>
                                         <form id="delete-form-{{ $speaking->slug }}"

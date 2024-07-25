@@ -154,4 +154,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('./students/assets/js/record_speaking.js') }}"></script>
 @endsection

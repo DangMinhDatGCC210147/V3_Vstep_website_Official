@@ -19,23 +19,26 @@
     </div>
 
     <!-- end page title -->
-        <div class="row">
-                <div class="col-6 d-flex justify-content-start">
-                    @if (auth()->user()->role == 0)
-                        <form id="inactive-students-form" class="mx-2" action="{{ route('students.inactive') }}" method="POST">
-                            @csrf
-                            <button type="button" class="btn btn-danger" onclick="inactiveStudents()" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Deactive account">Deactivate Students</button>
-                        </form>
-                        <form id="active-students-form" action="{{ route('students.active') }}" method="POST">
-                            @csrf
-                            <button type="button" class="btn btn-warning" onclick="activeStudents()" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Activate account">Activate Students</button>
-                        </form>
-                    @endif
-                </div>
-            <div class="col-6 d-flex justify-content-end">
-                <a href="{{ route('createStudent.create') }}" class="btn btn-info mr-2" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Create new account">Create</a>
-            </div>
+    <div class="row">
+        <div class="col-6 d-flex justify-content-start">
+            @if (auth()->user()->role == 0)
+                <form id="inactive-students-form" class="mx-2" action="{{ route('students.inactive') }}" method="POST">
+                    @csrf
+                    <button type="button" class="btn btn-danger" onclick="inactiveStudents()" data-bs-toggle="popover"
+                        data-bs-trigger="hover focus" data-bs-content="Deactive account">Deactivate Students</button>
+                </form>
+                <form id="active-students-form" action="{{ route('students.active') }}" method="POST">
+                    @csrf
+                    <button type="button" class="btn btn-warning" onclick="activeStudents()" data-bs-toggle="popover"
+                        data-bs-trigger="hover focus" data-bs-content="Activate account">Activate Students</button>
+                </form>
+            @endif
         </div>
+        <div class="col-6 d-flex justify-content-end">
+            <a href="{{ route('createStudent.create') }}" class="btn btn-info mr-2" data-bs-toggle="popover"
+                data-bs-trigger="hover focus" data-bs-content="Create new account">Create</a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -45,21 +48,20 @@
                     <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
-                                <th><input type="checkbox" id="checkAll"></th>
+                                <th></th>
                                 <th>No</th>
                                 <th>Full Name</th>
                                 <th>Email</th>
                                 <th>Student ID</th>
                                 <th>Status</th>
-                                {{-- @if(auth()->user()->role == 0) --}}
-                                    <th>Action</th>
-                                {{-- @endif --}}
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($students as $student)
                                 <tr class="{{ $student->is_active ? '' : 'inactive-row' }}">
-                                    <td><input type="checkbox" name="student_ids[]" value="{{ $student->id }}" {{ $student->is_active ? 'checked' : '' }}></td>
+                                    <td><input type="checkbox" name="student_ids[]" value="{{ $student->id }}"
+                                            {{ $student->is_active ? 'checked' : '' }}></td>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->email }}</td>
@@ -77,15 +79,17 @@
                                     </td>
 
                                     <td>
-                                        @if(auth()->user()->role == 0)
-                                            <a href="{{ route('createStudent.edit', $student->slug) }}" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Edit"><i
-                                                    class="mdi mdi-lead-pencil mdi-24px"></i></a>
+                                        @if (auth()->user()->role == 0)
+                                            <a href="{{ route('createStudent.edit', $student->slug) }}"
+                                                data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                data-bs-content="Edit"><i class="mdi mdi-lead-pencil mdi-24px"></i></a>
                                         @endif
                                         <a href="{{ route('createStudent.destroy', $student->slug) }}"
                                             onclick="event.preventDefault();
                                                     if(confirm('Are you sure you want to delete this test?')) {
                                                         document.getElementById('delete-form-{{ $student->slug }}').submit();
-                                                    }" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Delete">
+                                                    }"
+                                            data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Delete">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                         </a>
                                         <form id="delete-form-{{ $student->slug }}"
@@ -109,28 +113,33 @@
         .inactive-row {
             opacity: 0.3;
         }
+        .ag-theme-alpine {
+            height: 500px;
+            width: 100%;
+        }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Select/Deselect all checkboxes
-            document.getElementById('checkAll').addEventListener('change', function() {
-                let checkboxes = document.querySelectorAll('input[name="student_ids[]"]');
-                checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-            });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Select/Deselect all checkboxes
+        //     document.getElementById('checkAll').addEventListener('change', function() {
+        //         let checkboxes = document.querySelectorAll('input[name="student_ids[]"]');
+        //         checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        //     });
 
-            // Check/uncheck "checkAll" based on individual checkbox status
-            let checkboxes = document.querySelectorAll('input[name="student_ids[]"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    let allChecked = Array.from(checkboxes).every(chk => chk.checked);
-                    document.getElementById('checkAll').checked = allChecked;
-                });
-            });
+        //     // Check/uncheck "checkAll" based on individual checkbox status
+        //     let checkboxes = document.querySelectorAll('input[name="student_ids[]"]');
+        //     checkboxes.forEach(checkbox => {
+        //         checkbox.addEventListener('change', function() {
+        //             let allChecked = Array.from(checkboxes).every(chk => chk.checked);
+        //             document.getElementById('checkAll').checked = allChecked;
+        //         });
+        //     });
 
-            // Initialize the "checkAll" checkbox status on page load
-            let allChecked = Array.from(checkboxes).every(chk => chk.checked);
-            document.getElementById('checkAll').checked = allChecked;
-        });
+        //     // Initialize the "checkAll" checkbox status on page load
+        //     let allChecked = Array.from(checkboxes).every(chk => chk.checked);
+        //     document.getElementById('checkAll').checked = allChecked;
+        // });
+
 
         function inactiveStudents() {
             let checkboxes = document.querySelectorAll('input[name="student_ids[]"]:not(:checked)');

@@ -55,13 +55,15 @@
                                     <td>{{ $writing->created_at }}</td>
                                     <td>
                                         <a href="{{ route('editQuestionWriting', ['test_slug' => $writing->slug, 'part_name' => $questions[$index]]) }}">
-                                            <i class="mdi mdi-lead-pencil mdi-24px"></i>
+                                            <i class="mdi mdi-lead-pencil mdi-24px" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                            data-bs-content="Edit"></i>
                                         </a>
                                         <a href="{{ route('test.skill.destroy', $writing->slug) }}"
                                             onclick="event.preventDefault();
                                                     if(confirm('Are you sure you want to delete this test skill?')) {
                                                         document.getElementById('delete-form-{{ $writing->slug }}').submit();
-                                                    }">
+                                                    }" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                data-bs-content="Delete">
                                             <i class="mdi mdi-delete-empty mdi-24px" style="color: red"></i>
                                         </a>
                                         <form id="delete-form-{{ $writing->slug }}"

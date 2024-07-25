@@ -127,4 +127,5 @@
             });
         }
     </script>
+    <script src="{{ asset('./students/assets/js/record_speaking.js') }}"></script>
 @endsection
