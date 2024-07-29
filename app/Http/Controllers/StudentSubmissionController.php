@@ -126,7 +126,6 @@ class StudentSubmissionController extends Controller
 
     public function saveRecording(Request $request)
     {
-
         // Validate the incoming request
         $validated = $request->validate([
             'test_id' => 'required|integer',
@@ -139,23 +138,26 @@ class StudentSubmissionController extends Controller
         $user = auth()->user();
         $accountId = $user->account_id;
 
+        // Initialize part_number if it does not exist in the session
         if (!session()->has('part_number')) {
-            session(['part_number' => 1]);
+            session(['part_number' => 0]);
         }
 
-        // Lấy giá trị partNumber từ session
-        $partNumber = session('part_number');
+        // Increment part_number
+        $partNumber = session('part_number') + 1;
 
-        // Tăng giá trị partNumber và giới hạn trong khoảng từ 1 đến 3
-        $partNumber = $partNumber % 3 + 1;
+        // Cycle part_number back to 1 if it exceeds 3
+        if ($partNumber > 3) {
+            $partNumber = 1;
+        }
 
-        // Lưu lại giá trị mới của partNumber vào session
+        // Save the updated part_number back to the session
         session(['part_number' => $partNumber]);
 
         // Construct a unique file name
         $currentTimeFormatted = date('n_j_Y', time());
-        
         $fileName = $accountId . '_Part_' . $partNumber . '_' . $currentTimeFormatted . '_' . time() . '.mp3';
+
         // Store the file in a dedicated directory
         $path = $request->file('recording')->storeAs('studentResponse', $fileName, 'public');
 
