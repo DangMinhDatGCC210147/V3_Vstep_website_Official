@@ -147,14 +147,17 @@
                                                 'studentId' => $result->student->id,
                                                 'testName' => $result->test_name,
                                                 'resultId' => isset($result->computed_listening_score) ? $result->id : '',
-                                            ]) }}">
+                                            ]) }}" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                data-bs-content="Mark score">
                                             <i class="mdi mdi-lead-pencil mdi-24px" style="color:orange"></i>
                                         </a>
                                         <a
-                                            href="{{ route('download.response', ['studentId' => $result->student_id, 'testName' => $result->test_name]) }}">
+                                            href="{{ route('download.response', ['studentId' => $result->student_id, 'testName' => $result->test_name]) }}" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                            data-bs-content="Download">
                                             <i class="mdi mdi-download mdi-24px"></i>
                                         </a>
-                                        <a href="{{ route('resultList.details', ['id' => $result->id]) }}">
+                                        <a href="{{ route('resultList.details', ['id' => $result->id]) }}" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                            data-bs-content="View detail">
                                             <i class="mdi mdi-eye mdi-24px" style="color:rgb(22, 22, 174)"></i>
                                         </a>
                                     </td>

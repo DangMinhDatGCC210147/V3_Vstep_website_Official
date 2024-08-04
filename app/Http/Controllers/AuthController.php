@@ -14,6 +14,8 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
+use function Ramsey\Uuid\v1;
+
 class AuthController extends Controller
 {
     public function registerExcelStudents(Request $request)
@@ -96,9 +98,9 @@ class AuthController extends Controller
 
         if ($user->role == 1) {
             return redirect()->route('tableLecturer.index')->with('success', 'Registered successfully');
-        }else if($user->role == 0){
+        } else if ($user->role == 0) {
             return redirect()->route('tableAdmin.index')->with('success', 'Registered successfully');
-        }else {
+        } else {
             return redirect()->route('tableStudent.index')->with('success', 'Registered successfully');
         }
     }
@@ -162,5 +164,33 @@ class AuthController extends Controller
 
         // Chuyển hướng người dùng về trang chủ hoặc trang đăng nhập
         return redirect('/');
+    }
+
+    public function changePassword()
+    {
+        return view('auth.changePassword');
+    }
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'old_password' => 'required|string|min:8',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'No account found with that email.']);
+        }
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return back()->withErrors(['old_password' => 'Your old password is incorrect.']);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('student.login')->with('success', 'Password updated successfully.');
     }
 }

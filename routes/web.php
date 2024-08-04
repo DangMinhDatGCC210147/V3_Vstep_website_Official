@@ -30,6 +30,8 @@ Route::fallback(function () {
 
 Route::get('/', [AuthController::class, 'showlogin'])->name('student.login');
 Route::post('/login', [AuthController::class, 'login'])->name('loginAccount');
+Route::get('/change-password', [AuthController::class, 'changePassword'])->name('student.changePassword');
+Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('student.update.password');
 // Route::get('/login_lecturer_admin', [AuthController::class, 'login_view'])->name('loginAccountView');
 Route::post('/students/tests/{test}/session/start', [SessionController::class, 'start']);
 Route::post('/students/tests/{test}/session/end', [SessionController::class, 'end']);

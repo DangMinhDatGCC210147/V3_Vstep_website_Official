@@ -44,7 +44,7 @@
                     <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
-                                <th><input type="checkbox" id="checkAll"></th>
+                                <th></th>
                                 <th>No</th>
                                 <th>Full Name</th>
                                 <th>Email</th>

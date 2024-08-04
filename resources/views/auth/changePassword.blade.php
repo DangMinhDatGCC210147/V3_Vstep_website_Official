@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         {{-- <h3 class="form-title-center">Sign up and get access to the full guide right now</h3> --}}
-                        <form method="POST" action="{{ route('loginAccount') }}">
+                        <form method="POST" action="{{ route('student.update.password') }}">
                             @csrf
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -38,12 +38,19 @@
                             @endif
                             <input class="form-control" type="email" name="email" placeholder="E-mail FPT Address"
                                 required>
-                            <input class="form-control" type="password" name="password" placeholder="Password" required>
+                            <input type="password" class="form-control" id="old_password" placeholder="Old Password" name="old_password">
+                            <input type="password" class="form-control" id="new_password" placeholder="New Password" name="new_password">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid password.
+                                    </div>
+                                    <input type="password" class="form-control" id="new_password_confirmation" placeholder="Confirm Password" name="new_password_confirmation" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid password.
+                                    </div>
                             <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn ibtn-full">Login</button>
+                                <button id="submit" type="submit" class="ibtn ibtn-full">Change Password</button>
                             </div>
                         </form>
-                        <div class="change-pass d-flex justify-content-center p-1"><a href="{{ route("student.changePassword") }}">Forgot your password?</a></div>
                     </div>
                 </div>
             </div>
