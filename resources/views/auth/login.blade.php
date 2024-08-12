@@ -43,7 +43,7 @@
                                 <button id="submit" type="submit" class="ibtn ibtn-full">Login</button>
                             </div>
                         </form>
-                        <div class="change-pass d-flex justify-content-center p-1"><a href="{{ route("student.changePassword") }}">Forgot your password?</a></div>
+                        <div class="change-pass d-flex justify-content-center p-1" ><a style="color:rgb(8, 29, 152)" href="{{ route("student.changePassword") }}">Forgot your password?</a></div>
                     </div>
                 </div>
             </div>

@@ -107,12 +107,7 @@ class AuthController extends Controller
 
     public function showlogin()
     {
-        return view('auth.login');
-    }
-
-    public function login_view()
-    {
-        return view('auth.login1');
+        return view('auth.login-vstep');
     }
 
     public function login(Request $request)
@@ -168,8 +163,9 @@ class AuthController extends Controller
 
     public function changePassword()
     {
-        return view('auth.changePassword');
+        return view('auth.changePassword-vstep');
     }
+
     public function updatePassword(Request $request)
     {
         $request->validate([
