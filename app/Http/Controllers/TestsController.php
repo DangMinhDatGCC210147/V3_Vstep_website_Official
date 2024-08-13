@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Instructor;
-use App\Models\Option;
-use App\Models\Question;
-use App\Models\ReadingsAudio;
-use App\Models\SkillPart;
+
 use App\Models\Student;
 use App\Models\Test;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
 
@@ -73,5 +70,18 @@ class TestsController extends Controller
         });
 
         return response()->json(['message' => 'All tests and related student records have been deleted successfully.']);
+    }
+
+    public function deleteMultipleTests(Request $request){
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
+
+        // Xóa các bài kiểm tra có ngày tạo trong khoảng start_date và end_date
+        $deletedCount = Test::whereBetween('created_at', [$request->start_date, $request->end_date])->delete();
+
+        // Redirect về một trang khác hoặc trả về thông báo thành công
+        return back()->with('success', "Deleted $deletedCount tests successfully.");
     }
 }

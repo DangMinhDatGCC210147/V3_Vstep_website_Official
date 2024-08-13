@@ -105,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/tests', [TestsController::class, 'store'])->name('test.store');
         Route::delete('/tests/{test_slug}', [TestsController::class, 'destroy'])->name('test.destroy');
         Route::delete('/delete-all-tests', [TestsController::class, 'destroyAll']);
+        Route::delete('/delete-multiple-tests', [TestsController::class, 'deleteMultipleTests'])->name('delete-tests');
 
         //FUNCTIONS FOR CREATING SKILL-PART-QUESTION
         Route::get('/create-skill-part', [SkillPartQuestionController::class, 'create'])->name('create.skill.part');

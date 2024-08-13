@@ -190,10 +190,8 @@
                                                 <div class="recording-controls" data-question-id="{{ $question->id }}"
                                                     data-part-id="{{ $testPart->testSkill->part_name }}"
                                                     data-skill-id="{{ $testPart->testSkill->id }}">
-                                                    <button type="button" class="startRecording" hidden>Bắt đầu ghi
-                                                        âm</button>
-                                                    <button type="button" class="stopRecording" disabled hidden>Dừng ghi
-                                                        âm</button>
+                                                    <button type="button" class="startRecording" hidden>Bắt đầu ghi âm</button>
+                                                    <button type="button" class="stopRecording" disabled hidden>Dừng ghi âm</button>
                                                     <audio class="audioPlayback" controls hidden></audio>
                                                 </div>
                                             @endif
@@ -394,7 +392,7 @@
                         localStorage.clear();
                         location.reload();
                         setTimeout(function() {
-                            window.location.href = testResultUrl;
+                            window.location.replace(testResultUrl);
                         }, 500); // Chờ 500 ms
                     }
                 });

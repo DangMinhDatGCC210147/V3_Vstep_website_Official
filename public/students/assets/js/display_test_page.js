@@ -192,8 +192,33 @@ $(document).ready(function () {
             startTimer('Speaking');
         }
     }
+    function saveEachForm(currentSkillName) {
+        var formToSubmit = $('.testForm').filter(function() {
+            return $(this).attr('action').includes(currentSkillName);
+        }).first();
+
+        if (formToSubmit.length) {
+            // Lấy dữ liệu form
+            var formData = formToSubmit.serialize();
+            // Thực hiện AJAX request
+            $.ajax({
+                url: formToSubmit.attr('action'), // URL để gửi dữ liệu
+                type: 'POST', // Phương thức gửi dữ liệu
+                data: formData, // Dữ liệu form
+                success: function(response) {
+                    console.log('Form submitted successfully:', response);
+                    // Xử lý khi gửi form thành công
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error submitting form:', textStatus, errorThrown);
+                    // Xử lý khi có lỗi xảy ra
+                }
+            });
+        }
+    }
 
     function enableNextSkillButtons(currentSkillName) {
+        saveEachForm(currentSkillName);
         var skillNames = $('.skill-part-btn').map(function () {
             return $(this).data('skill-name');
         }).get();
