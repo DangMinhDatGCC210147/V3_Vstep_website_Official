@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-md-9 d-flex justify-content-around pt-2">
                                 @foreach ($listeningParts as $part => $count)
-                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-primary fs-5">{{ $count }}</div></div>
                                 @endforeach
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-9 d-flex justify-content-around pt-2">
                                 @foreach ($speakingParts as $part => $count)
-                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-danger fs-5">{{ $count }}</div></div>
                                 @endforeach
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-md-9 d-flex justify-content-around pt-2">
                                 @foreach ($readingParts as $part => $count)
-                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-success fs-5">{{ $count }}</div></div>
                                 @endforeach
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-md-9 d-flex justify-content-around pt-2">
                                 @foreach ($writingParts as $part => $count)
-                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-secondary fs-5">{{ $count }}</div></div>
                                 @endforeach
                             </div>
                         </div>
