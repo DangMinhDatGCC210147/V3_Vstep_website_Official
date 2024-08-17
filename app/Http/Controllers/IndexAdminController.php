@@ -80,8 +80,48 @@ class IndexAdminController extends Controller
      */
     public function show()
     {
-        return view('admin.questionBank');
+        // Khởi tạo các biến để lưu số lượng câu hỏi theo kỹ năng và phần
+        $readingParts = [];
+        $listeningParts = [];
+        $writingParts = [];
+        $speakingParts = [];
+
+        // Đếm số câu theo từng part của kỹ năng Reading
+        for ($i = 1; $i <= 4; $i++) {
+            $part_name = 'Part_' . $i;
+            $readingParts[$part_name] = TestSkill::where('skill_name', 'Reading')
+                ->where('part_name', $part_name)
+                ->count();
+        }
+
+        // Đếm số câu theo từng part của kỹ năng Listening
+        for ($i = 1; $i <= 3; $i++) {
+            $part_name = 'Part_' . $i;
+            $listeningParts[$part_name] = TestSkill::where('skill_name', 'Listening')
+                ->where('part_name', $part_name)
+                ->count();
+        }
+
+        // Đếm số câu theo từng part của kỹ năng Writing
+        for ($i = 1; $i <= 2; $i++) {
+            $part_name = 'Part_' . $i;
+            $writingParts[$part_name] = TestSkill::where('skill_name', 'Writing')
+                ->where('part_name', $part_name)
+                ->count();
+        }
+
+        // Đếm số câu theo từng part của kỹ năng Speaking
+        for ($i = 1; $i <= 3; $i++) {
+            $part_name = 'Part_' . $i;
+            $speakingParts[$part_name] = TestSkill::where('skill_name', 'Speaking')
+                ->where('part_name', $part_name)
+                ->count();
+        }
+
+        // Truyền các biến này sang view
+        return view('admin.questionBank', compact('readingParts', 'listeningParts', 'writingParts', 'speakingParts'));
     }
+
     public function showTableOfWritingQuestionBank()
     {
         // Truy vấn tất cả các kỹ năng có tên 'Writing'

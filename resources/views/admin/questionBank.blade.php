@@ -32,10 +32,19 @@
                         <hr>
                         <p class="card-text">List Part and question of Listening</p>
                         <hr>
-                        <a href="{{ route('questionBank.listening') }}"
-                            class="btn btn-primary waves-effect waves-light">
-                            View
-                        </a>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="{{ route('questionBank.listening') }}"
+                                    class="btn btn-primary waves-effect waves-light">
+                                    View
+                                </a>
+                            </div>
+                            <div class="col-md-9 d-flex justify-content-around pt-2">
+                                @foreach ($listeningParts as $part => $count)
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,10 +56,18 @@
                         <hr>
                         <p class="card-text">List Part and question of Speaking</p>
                         <hr>
-                        <a href="{{ route('questionBank.speaking') }}"
-                            class="btn btn-danger waves-effect waves-light">
-                            View
-                        </a>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="{{ route('questionBank.speaking') }}" class="btn btn-danger waves-effect waves-light">
+                                    View
+                                </a>
+                            </div>
+                            <div class="col-md-9 d-flex justify-content-around pt-2">
+                                @foreach ($speakingParts as $part => $count)
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,10 +79,18 @@
                         <hr>
                         <p class="card-text">List Part and question of Reading</p>
                         <hr>
-                        <a href="{{ route('questionBank.reading') }}"
-                            class="btn btn-success waves-effect waves-light">
-                            View
-                        </a>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="{{ route('questionBank.reading') }}" class="btn btn-success waves-effect waves-light">
+                                    View
+                                </a>
+                            </div>
+                            <div class="col-md-9 d-flex justify-content-around pt-2">
+                                @foreach ($readingParts as $part => $count)
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,10 +102,18 @@
                         <hr>
                         <p class="card-text">List Part and question of Writing</p>
                         <hr>
-                        <a href="{{ route('questionBank.writing') }}"
-                            class="btn btn-secondary waves-effect waves-light">
-                            View
-                        </a>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="{{ route('questionBank.writing') }}" class="btn btn-secondary waves-effect waves-light">
+                                    View
+                                </a>
+                            </div>
+                            <div class="col-md-9 d-flex justify-content-around pt-2">
+                                @foreach ($writingParts as $part => $count)
+                                    <div>{{ $part = str_replace("_", " ", $part) }}: <div class="badge bg-warning fs-5">{{ $count }}</div></div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
