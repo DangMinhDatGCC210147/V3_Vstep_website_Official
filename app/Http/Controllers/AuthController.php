@@ -143,7 +143,7 @@ class AuthController extends Controller
 
         return back()->withErrors([
             'email' => 'Wrong email or password, please re-enter for information.',
-            'is_active' => 'Your account is inactive. Please contact support.',
+            'is_active' => 'Or Your account is inactive. Please contact support.',
         ])->onlyInput('email');
     }
 
