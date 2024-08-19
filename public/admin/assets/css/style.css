@@ -158,7 +158,7 @@ File: Main Css File
   --bs-body-font-size: 0.875rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #747a80;
+  --bs-body-color: #000000;
   --bs-body-color-rgb: 116, 122, 128;
   --bs-body-bg: #ffffff;
   --bs-body-bg-rgb: 255, 255, 255;
@@ -207,7 +207,7 @@ File: Main Css File
 
 [data-bs-theme=dark] {
   color-scheme: dark;
-  --bs-body-color: #adb5bd;
+  --bs-body-color: #ffffff;
   --bs-body-color-rgb: 173, 181, 189;
   --bs-body-bg: #1e1e2e;
   --bs-body-bg-rgb: 30, 30, 46;
