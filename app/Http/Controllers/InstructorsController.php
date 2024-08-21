@@ -100,7 +100,8 @@ class InstructorsController extends Controller
     public function update(Request $request, $slug)
     {
         $user = User::where('slug', $slug)->firstOrFail();
-        Log::info('User found', ['user' => $user]);
+        // dd($user->role);
+        // Log::info('User found', ['user' => $user]);
         // Validate request
         $request->validate([
             'name' => 'required|string|max:255',
@@ -113,39 +114,39 @@ class InstructorsController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->account_id = $request->account_id;
-        Log::info('Updated user details', ['name' => $user->name, 'email' => $user->email, 'account_id' => $user->account_id]);
+        // Log::info('Updated user details', ['name' => $user->name, 'email' => $user->email, 'account_id' => $user->account_id]);
 
         if ($request->filled('old_password')) {
-            Log::info('Old password provided');
+            // Log::info('Old password provided');
 
             if (Hash::check($request->old_password, $user->password)) {
-                Log::info('Old password is correct');
-
+                // Log::info('Old password is correct');
                 if ($request->new_password === $request->new_password_confirmation) {
-                    Log::info('New password confirmed');
-
+                    // Log::info('New password confirmed');
                     $user->password = Hash::make($request->new_password);
-                    Log::info('Password updated');
+                    // Log::info('Password updated');
                 } else {
-                    Log::warning('New password confirmation does not match');
+                    // Log::warning('New password confirmation does not match');
                     return redirect()->back()->withErrors(['new_password_confirmation' => 'New password and confirm password do not match.']);
                 }
             } else {
-                Log::warning('Old password is incorrect');
+                // Log::warning('Old password is incorrect');
                 return redirect()->back()->withErrors(['old_password' => 'Old password is incorrect.']);
             }
         }
 
         $user->save();
-        Log::info('User updated successfully', ['user' => $user]);
+        // Log::info('User updated successfully', ['user' => $user]);
 
         if ($user->role == 2) {
             return redirect()->route('tableStudent.index')->with('success', 'User updated successfully.');
-        } elseif ($user->role == 1) {
+        } elseif ($user->role == 1 ) {
             return redirect()->route('tableLecturer.index')->with('success', 'User updated successfully.');
+        }else if($user->role == 0){
+            return redirect()->route('tableAdmin.index')->with('success', 'User updated successfully.');
+        }else{
+            return redirect()->back()->with('error', 'Role not recognized.');
         }
-
-        return redirect()->back()->with('error', 'Role not recognized.');
     }
 
     /**
