@@ -44,12 +44,20 @@ class RoomTestResultsExport implements FromCollection, WithHeadings
 
             $writingScore = $testResult ? (round((($testResult->writing_part1 + $testResult->writing_part2 * 2) / 3) * 2) / 2) : null;
             $speakingScore = $testResult ? (round((($testResult->speaking_part1 + $testResult->speaking_part2 + $testResult->speaking_part3) / 3) * 2) / 2) : null;
-            $overallScore = null;
+            $listeningScore = $testResult ? $this->calculateScoreListening($testResult->listening_correctness) : null;
+            $readingScore = $testResult ? $this->calculateScoreReading($testResult->reading_correctness) : null;
 
-            if ($writingScore !== null || $speakingScore !== null) {
+            // Chỉ tính điểm tổng nếu tất cả 4 kỹ năng đều có điểm
+            $overallScore = null;
+            if ($testResult->writing_part1 !== null
+                && $testResult->writing_part2 !== null
+                && $testResult->speaking_part1 !== null
+                && $testResult->speaking_part2 !== null
+                && $testResult->speaking_part3 !== null
+                && $listeningScore !== null && $readingScore !== null) {
                 $overallScore = round((
-                    $this->calculateScoreListening($testResult->listening_correctness ?? 0) +
-                    $this->calculateScoreReading($testResult->reading_correctness ?? 0) +
+                    $listeningScore +
+                    $readingScore +
                     $writingScore +
                     $speakingScore
                 ) / 4 * 2) / 2;
@@ -60,11 +68,11 @@ class RoomTestResultsExport implements FromCollection, WithHeadings
                 'Student Name' => $student->name,
                 'Student ID' => $student->account_id,
                 'Test Name' => $testResult->test_name ?? '-',
-                'Listening' => $testResult ? $this->calculateScoreListening($testResult->listening_correctness) : '-',
-                'Reading' => $testResult ? $this->calculateScoreReading($testResult->reading_correctness) : '-',
-                'Writing' => $writingScore,
-                'Speaking' => $speakingScore,
-                'Overall' => $overallScore,
+                'Listening' => $listeningScore ?? '-',
+                'Reading' => $readingScore ?? '-',
+                'Writing' => $writingScore ?? '-',
+                'Speaking' => $speakingScore ?? '-',
+                'Overall' => $overallScore !== null ? $overallScore : '-',
                 'Date Finish' => $testResult ? $testResult->created_at->toDateString() : '-',
             ];
         });
@@ -74,7 +82,16 @@ class RoomTestResultsExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'No', 'Student Name', 'Student ID', 'Test Name', 'Listening', 'Reading', 'Writing', 'Speaking', 'Overall', 'Date Finish'
+            'No',
+            'Student Name',
+            'Student ID',
+            'Test Name',
+            'Listening',
+            'Reading',
+            'Writing',
+            'Speaking',
+            'Overall',
+            'Date Finish'
         ];
     }
 

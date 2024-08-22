@@ -313,12 +313,21 @@ class RoomsController extends Controller
 
                 if ($response->readingAudio) {
                     $readingAudioText = $response->readingAudio->reading_audio_file;
-                    Html::addHtml($section, $readingAudioText);
+
+                    // Strip problematic tags or entities
+                    $cleanedHtml = preg_replace('/<br[^>]*>/', '<br/>', $readingAudioText);
+                    $cleanedHtml = preg_replace('/<p[^>]*>/', '<p>', $cleanedHtml);
+
+                    // Add the cleaned HTML to the section
+                    Html::addHtml($section, $cleanedHtml);
                 }
 
                 $section->addTextBreak(1); // Thêm một khoảng trống giữa question và response
                 $section->addText("Response:");
-                $section->addText($response->text_response);
+                $textResponses = explode("\n", $response->text_response);
+                foreach ($textResponses as $line) {
+                    $section->addText($line);
+                }
 
                 // Đặt tên file theo bộ đếm
                 $partNumber = $writingCounters[$response->student_id];
@@ -326,7 +335,7 @@ class RoomsController extends Controller
                 $writer = IOFactory::createWriter($phpWord, 'Word2007');
                 $writer->save($docxFilePath);
 
-                Log::info('Saved writing response', ['docxFilePath' => $docxFilePath]);
+                // Log::info('Saved writing response', ['docxFilePath' => $docxFilePath]);
             }
         }
 
