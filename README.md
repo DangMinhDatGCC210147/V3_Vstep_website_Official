@@ -1,4 +1,4 @@
-# VSTEP Mock Test System
+# VSTEP Trial Examination Testing System
 
 This project is a web-based VSTEP (Vietnamese Standardized Test of English Proficiency) mock test system designed to help university students prepare for the official VSTEP English certificate examination. The system provides a simulated testing environment, practice materials, and automatic scoring features to enhance students' readiness and confidence.
 
