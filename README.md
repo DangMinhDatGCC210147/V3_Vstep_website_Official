@@ -1,66 +1,47 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# VSTEP Mock Test System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a web-based VSTEP (Vietnamese Standardized Test of English Proficiency) mock test system designed to help university students prepare for the official VSTEP English certificate examination. The system provides a simulated testing environment, practice materials, and automatic scoring features to enhance students' readiness and confidence.
 
-## About Laravel
+## 🔍 Purpose
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The system aims to:
+- Provide students with realistic mock tests that closely follow the VSTEP format.
+- Help users track their progress through automatic scoring and performance analytics.
+- Support self-study and preparation for the B1 to C1 levels of English proficiency.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 👥 Team Members & Responsibilities
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🧑‍💼 Đặng Minh Đạt  
+**Roles**: Project Manager (PM), Developer, Business Analyst (BA)
 
-## Learning Laravel
+**Responsibilities**:
+- Designed the user interface (UI) for the entire system
+- Developed core features related to mock test-taking for students
+- Built the functionality for managing and inputting questions into the question bank
+- Implemented the logic to randomize different parts of the test
+- Developed the grading and scoring system for lecturers
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 👨‍💻 Hồ Nhất Khoa  
+**Roles**: Developer, System Architect (SA)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Responsibilities**:
+- Designed and implemented the system architecture and database structure
+- Developed the function of doing exercises in each form of multiple-choice, fill in the blank, matching heading, true false not given
+- Developed the function of entering all kinds of exercises for lecturers
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Features
 
-## Laravel Sponsors
+- Full mock test simulation for Listening, Reading, Writing, and Speaking
+- Student dashboard to review test history and scores
+- Randomization of test parts and questions
+- Admin panel for question bank management
+- Auto-grading system and results visualization for lecturers
+- Mobile-friendly and responsive design
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📌 Target Users
 
-### Premium Partners
+Primarily designed for Vietnamese university students preparing to take the VSTEP exam as part of their graduation or certification requirements.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Thank you for checking out our project! If you have any feedback or suggestions, feel free to contribute or reach out.
