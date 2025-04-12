@@ -44,4 +44,7 @@ Primarily designed for Greenwich Vietnam Cantho Campus students preparing to tak
 
 ---
 
-Thank you for checking out our project! If you have any feedback or suggestions, feel free to contribute or reach out.
+## Reference
+- Fullname: Đặng Minh Đạt
+- Email: dangminhdat03.forwork@gmail.com
+- Zalo: 0907294396
