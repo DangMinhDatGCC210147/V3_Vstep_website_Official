@@ -40,7 +40,7 @@ The system aims to:
 
 ## 📌 Target Users
 
-Primarily designed for Vietnamese university students preparing to take the VSTEP exam as part of their graduation or certification requirements.
+Primarily designed for Greenwich Vietnam Cantho Campus students preparing to take the VSTEP exam as part of their graduation or certification requirements.
 
 ---
 
